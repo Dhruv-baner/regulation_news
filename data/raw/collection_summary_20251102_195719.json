@@ -1,0 +1,20 @@
+{
+  "collection_timestamp": "20251102_195719",
+  "total_articles": 652,
+  "date_range": {
+    "start": "2025-10-03T01:04:26+00:00",
+    "end": "2025-11-01T14:13:42+00:00"
+  },
+  "articles_by_market": {
+    "United States": 160,
+    "Japan": 142,
+    "France": 129,
+    "United Kingdom": 122,
+    "Germany": 99
+  },
+  "articles_by_source": {
+    "newsapi": 381,
+    "google_news": 271
+  },
+  "missing_dates": 271
+}
