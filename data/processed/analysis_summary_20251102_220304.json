@@ -1,0 +1,40 @@
+{
+  "analysis_timestamp": "20251102_220304",
+  "total_articles": 652,
+  "llm_model": "gpt-3.5-turbo",
+  "relevance_stats": {
+    "mean": 5.50920245398773,
+    "median": 7.0,
+    "high_relevance_count": 386
+  },
+  "categories": {
+    "securities_regulation": 196,
+    "monetary_policy": 155,
+    "banking_regulation": 91,
+    "other": 88,
+    "central_banking": 60,
+    "market_infrastructure": 50,
+    "cross_border_investment": 12
+  },
+  "impact_levels": {
+    "high": 224,
+    "medium": 222,
+    "low": 206
+  },
+  "by_market": {
+    "count": {
+      "France": 129,
+      "Germany": 99,
+      "Japan": 142,
+      "United Kingdom": 122,
+      "United States": 160
+    },
+    "mean": {
+      "France": 6.0852713178294575,
+      "Germany": 6.363636363636363,
+      "Japan": 6.366197183098592,
+      "United Kingdom": 5.524590163934426,
+      "United States": 3.74375
+    }
+  }
+}
