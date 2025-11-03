@@ -10,7 +10,7 @@ import matplotlib.colors as mcolors
 
 # Page configuration
 st.set_page_config(
-    page_title="Norges Bank Regulatory Intelligence",
+    page_title="Regulation Tracker Dashboard",
     page_icon="🏦",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -76,7 +76,7 @@ st.markdown("""
 print("Setup complete - paste this into app.py")
 
 # Header
-st.markdown('<p class="main-header">🏦 Norges Bank Regulatory Intelligence Dashboard</p>', unsafe_allow_html=True)
+st.markdown('<p class="main-header">🏦 Regulation Tracker Dashboard</p>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">AI-Powered Monitoring of Global Financial Regulations</p>', unsafe_allow_html=True)
 
 st.markdown(f"**Last Updated:** {timestamp[:8]}-{timestamp[8:14]} | **Total Articles:** {len(df)}")
@@ -169,144 +169,9 @@ st.markdown("---")
 print("Section 3 complete - add below Section 2")
 
 # Visualizations in tabs
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Market Overview", "📈 Category Analysis", "🗺️ Geographic View", "📰 Top Articles"])
+tab1, tab2, tab3, tab4 = st.tabs(["🗺️ Geographic View", "📊 Market Overview", "📈 Category Analysis", "📰 Top Articles"])
 
 with tab1:
-    st.subheader("Market Coverage and Relevance")
-    
-    # Market overview chart
-    market_overview = df_filtered.groupby('market_name').agg({
-        'relevance_score': ['count', 'mean']
-    }).reset_index()
-    market_overview.columns = ['market', 'article_count', 'avg_relevance']
-    market_overview = market_overview.sort_values('article_count', ascending=False)
-    
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-    
-    fig.add_trace(
-        go.Bar(
-            x=market_overview['market'],
-            y=market_overview['article_count'],
-            name='Article Count',
-            marker_color=[COLORS['markets'][m] for m in market_overview['market']],
-            text=market_overview['article_count'],
-            textposition='outside',
-            opacity=0.8
-        ),
-        secondary_y=False
-    )
-    
-    fig.add_trace(
-        go.Scatter(
-            x=market_overview['market'],
-            y=market_overview['avg_relevance'],
-            name='Avg Relevance',
-            mode='lines+markers',
-            line=dict(color=COLORS['alert'], width=3),
-            marker=dict(size=10, color=COLORS['alert'], line=dict(width=2, color='white')),
-            yaxis='y2'
-        ),
-        secondary_y=True
-    )
-    
-    fig.update_layout(
-        xaxis_title='Market',
-        yaxis_title='Number of Articles',
-        yaxis2_title='Average Relevance Score',
-        height=500,
-        showlegend=True,
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-        hovermode='x unified',
-        font=dict(family='Arial, sans-serif', size=12),
-        plot_bgcolor='white',
-        paper_bgcolor='white'
-    )
-    
-    fig.update_yaxes(range=[0, market_overview['article_count'].max() * 1.3], secondary_y=False)
-    fig.update_yaxes(range=[0, 10], secondary_y=True)
-    
-    st.plotly_chart(fig, use_container_width=True)
-    
-    # Relevance distribution
-    st.subheader("Relevance Score Distribution by Market")
-    
-    market_order = df_filtered.groupby('market_name')['relevance_score'].median().sort_values(ascending=False).index
-    
-    fig2 = go.Figure()
-    for market in market_order:
-        market_data = df_filtered[df_filtered['market_name'] == market]['relevance_score']
-        fig2.add_trace(go.Box(
-            y=market_data,
-            name=market,
-            marker_color=COLORS['markets'][market],
-            boxmean='sd',
-            opacity=0.8
-        ))
-    
-    fig2.update_layout(
-        yaxis_title='Relevance Score (0-10)',
-        xaxis_title='Market',
-        height=500,
-        showlegend=False,
-        hovermode='closest',
-        font=dict(family='Arial, sans-serif', size=12),
-        plot_bgcolor='white',
-        paper_bgcolor='white',
-        yaxis=dict(range=[0, 10])
-    )
-    
-    st.plotly_chart(fig2, use_container_width=True)
-
-print("Section 4 Tab 1 complete - add below Section 3")
-
-with tab2:
-    st.subheader("Regulatory Categories by Market")
-    
-    # Category distribution
-    category_market = pd.crosstab(df_filtered['market_name'], df_filtered['category'])
-    market_order_cat = category_market.sum(axis=1).sort_values(ascending=False).index
-    category_market = category_market.loc[market_order_cat]
-    
-    # Combine cross_border with other
-    if 'cross_border_investment' in category_market.columns:
-        category_market['other'] = category_market['other'] + category_market['cross_border_investment']
-        category_market = category_market.drop(columns=['cross_border_investment'])
-    
-    fig3 = go.Figure()
-    
-    category_colors = {
-        'securities_regulation': '#2C8C99',
-        'monetary_policy': '#F4A261', 
-        'banking_regulation': '#E76F51',
-        'central_banking': '#9B59B6',
-        'market_infrastructure': '#5D6D7E',
-        'other': '#BDC3C7'
-    }
-    
-    for category in category_market.columns:
-        fig3.add_trace(go.Bar(
-            name=category.replace('_', ' ').title(),
-            x=category_market.index,
-            y=category_market[category],
-            marker_color=category_colors.get(category, '#95A5A6'),
-            opacity=0.85
-        ))
-    
-    fig3.update_layout(
-        xaxis_title='Market',
-        yaxis_title='Number of Articles',
-        barmode='group',
-        height=500,
-        legend=dict(orientation="v", yanchor="top", y=0.98, xanchor="left", x=1.01),
-        hovermode='x unified',
-        font=dict(family='Arial, sans-serif', size=12),
-        plot_bgcolor='white',
-        paper_bgcolor='white'
-    )
-    
-    st.plotly_chart(fig3, use_container_width=True)
-
-with tab3:
     st.subheader("Geographic Regulatory Intelligence")
     
     # Map data
@@ -394,6 +259,143 @@ with tab3:
     
     st.plotly_chart(fig4, use_container_width=True)
 
+print("Section 4 Tab 1 complete - add below Section 3")
+
+with tab2:
+   
+    st.subheader("Market Coverage and Relevance")
+    
+    # Market overview chart
+    market_overview = df_filtered.groupby('market_name').agg({
+        'relevance_score': ['count', 'mean']
+    }).reset_index()
+    market_overview.columns = ['market', 'article_count', 'avg_relevance']
+    market_overview = market_overview.sort_values('article_count', ascending=False)
+    
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    
+    fig.add_trace(
+        go.Bar(
+            x=market_overview['market'],
+            y=market_overview['article_count'],
+            name='Article Count',
+            marker_color=[COLORS['markets'][m] for m in market_overview['market']],
+            text=market_overview['article_count'],
+            textposition='outside',
+            opacity=0.8
+        ),
+        secondary_y=False
+    )
+    
+    fig.add_trace(
+        go.Scatter(
+            x=market_overview['market'],
+            y=market_overview['avg_relevance'],
+            name='Avg Relevance',
+            mode='lines+markers',
+            line=dict(color=COLORS['alert'], width=3),
+            marker=dict(size=10, color=COLORS['alert'], line=dict(width=2, color='white')),
+            yaxis='y2'
+        ),
+        secondary_y=True
+    )
+    
+    fig.update_layout(
+        xaxis_title='Market',
+        yaxis_title='Number of Articles',
+        yaxis2_title='Average Relevance Score',
+        height=500,
+        showlegend=True,
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        hovermode='x unified',
+        font=dict(family='Arial, sans-serif', size=12),
+        plot_bgcolor='white',
+        paper_bgcolor='white'
+    )
+    
+    fig.update_yaxes(range=[0, market_overview['article_count'].max() * 1.3], secondary_y=False)
+    fig.update_yaxes(range=[0, 10], secondary_y=True)
+    
+    st.plotly_chart(fig, use_container_width=True)
+    
+    # Relevance distribution
+    st.subheader("Relevance Score Distribution by Market")
+    
+    market_order = df_filtered.groupby('market_name')['relevance_score'].median().sort_values(ascending=False).index
+    
+    fig2 = go.Figure()
+    for market in market_order:
+        market_data = df_filtered[df_filtered['market_name'] == market]['relevance_score']
+        fig2.add_trace(go.Box(
+            y=market_data,
+            name=market,
+            marker_color=COLORS['markets'][market],
+            boxmean='sd',
+            opacity=0.8
+        ))
+    
+    fig2.update_layout(
+        yaxis_title='Relevance Score (0-10)',
+        xaxis_title='Market',
+        height=500,
+        showlegend=False,
+        hovermode='closest',
+        font=dict(family='Arial, sans-serif', size=12),
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        yaxis=dict(range=[0, 10])
+    )
+    
+    st.plotly_chart(fig2, use_container_width=True)
+
+with tab3:
+    
+    st.subheader("Regulatory Categories by Market")
+    
+    # Category distribution
+    category_market = pd.crosstab(df_filtered['market_name'], df_filtered['category'])
+    market_order_cat = category_market.sum(axis=1).sort_values(ascending=False).index
+    category_market = category_market.loc[market_order_cat]
+    
+    # Combine cross_border with other
+    if 'cross_border_investment' in category_market.columns:
+        category_market['other'] = category_market['other'] + category_market['cross_border_investment']
+        category_market = category_market.drop(columns=['cross_border_investment'])
+    
+    fig3 = go.Figure()
+    
+    category_colors = {
+        'securities_regulation': '#2C8C99',
+        'monetary_policy': '#F4A261', 
+        'banking_regulation': '#E76F51',
+        'central_banking': '#9B59B6',
+        'market_infrastructure': '#5D6D7E',
+        'other': '#BDC3C7'
+    }
+    
+    for category in category_market.columns:
+        fig3.add_trace(go.Bar(
+            name=category.replace('_', ' ').title(),
+            x=category_market.index,
+            y=category_market[category],
+            marker_color=category_colors.get(category, '#95A5A6'),
+            opacity=0.85
+        ))
+    
+    fig3.update_layout(
+        xaxis_title='Market',
+        yaxis_title='Number of Articles',
+        barmode='group',
+        height=500,
+        legend=dict(orientation="v", yanchor="top", y=0.98, xanchor="left", x=1.01),
+        hovermode='x unified',
+        font=dict(family='Arial, sans-serif', size=12),
+        plot_bgcolor='white',
+        paper_bgcolor='white'
+    )
+    
+    st.plotly_chart(fig3, use_container_width=True)
+
 print("Section 5 complete - add below Section 4")
 
 with tab4:
@@ -470,7 +472,7 @@ with tab4:
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #5D6D7E; padding: 20px;'>
-    <p><b>Norges Bank Regulatory Intelligence Dashboard</b></p>
+    <p><b>Regulation Tracker Dashboard</b></p>
     <p>Powered by GPT-3.5-turbo | Data sources: NewsAPI, Google News</p>
 </div>
 """, unsafe_allow_html=True)
