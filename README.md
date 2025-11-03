@@ -31,14 +31,14 @@
 
 
 ### Geographic Intelligence View
-![Geographic View](assets\screenshots\plot_1.png)
+![Geographic View](assets/screenshots/plot_1.png)
 
 ### Market Overview & Distribution
-![Market Overview](assets\screenshots\plot_2.png)
-![Market Distribution](assets\screenshots\plot_3.png)
+![Market Overview](assets/screenshots/plot_2.png)
+![Market Distribution](assets/screenshots/plot_3.png)
 
 ### Regulation Type by Market
-![Regulation Categories]()
+![Regulation Categories](assets/screenshots/plot_4.png)
 
 
 
