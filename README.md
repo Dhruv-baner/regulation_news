@@ -6,17 +6,9 @@
 
 ## **What Is This?**
 
-- The goal of this project was to essentially come up woith some kind of AI-enabled tracker, which would collect data on regulatory changes in NBIM's 5 biggest markets, and then give some insights into those. 
+- The goal of this project was to essentially come up woith some kind of AI-enabled tracker, which would collect data on regulatory changes in 5 major markets (will be expanded to more), and then give some insights into those. 
 
 - Step one was to of course **identify the relevant markets**. This project focuses on: USA, UK, France, Germany, and Japan. Certainly a good mix, with differing approaches to regulation 
-
-| Country        | Value (NOK)           | Investments | % of Portfolio |
-|----------------|-----------------------|-------------|----------------|
-| USA            | 10,488,258,386,469   | 2,901       | 52.4%          |
-| Japan          | 1,207,846,613,870    | 1,410       | 6.0%           |
-| United Kingdom | 1,100,973,152,288    | 1,036       | 5.5%           |
-| Germany        | 916,292,718,569      | 295         | 4.6%           |
-| France         | 708,716,940,392      | 263         | 3.5%           |
 
 - Then came the **data collection**, using multi-source aggregation from sources such as NewsAPI and Google News. This got us a pretty decent set of articles for each of the markets ove the last few days.
 
@@ -52,12 +44,12 @@ This system automatically:
 - Categorizes articles by regulation type and impact level
 - Visualizes insights through interactive dashboards
 
-**Target Markets** (covering 72% of Norges Bank's equity portfolio):
-- 🇺🇸 United States (52.4%)
-- 🇯🇵 Japan (6.0%)
-- 🇬🇧 United Kingdom (5.5%)
-- 🇩🇪 Germany (4.6%)
-- 🇫🇷 France (3.5%)
+**Target Markets** 
+- 🇺🇸 United States 
+- 🇯🇵 Japan 
+- 🇬🇧 United Kingdom
+- 🇩🇪 Germany 
+- 🇫🇷 France 
 
 ---
 
