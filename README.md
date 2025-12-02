@@ -1,20 +1,20 @@
 # 🏦 Regulation Tracker Dashboard
 
 
-**[🚀 Live Dashboard](https://regulationnews-khvu3dtti5pz8f2gr5dw9f.streamlit.app/)** | **[📊 GitHub Repository](https://github.com/Dhruv-baner/regulation_news)**
+ **[📊 GitHub Repository](https://github.com/Dhruv-baner/regulation_news)**
 
 
 ## **What Is This?**
 
-- The goal of this project was to essentially come up woith some kind of AI-enabled tracker, which would collect data on regulatory changes in 5 major markets (will be expanded to more), and then give some insights into those. 
+- The goal of this project was to essentially come up with some kind of AI-enabled tracker, which would collect data on regulatory changes in 5 major markets (will be expanded to more), and then give some insights into those. 
 
-- Step one was to of course **identify the relevant markets**. This project focuses on: USA, UK, France, Germany, and Japan. Certainly a good mix, with differing approaches to regulation 
+- Step one was, of course, to **identify the relevant markets**. This project focuses on the USA, UK, France, Germany, and Japan. Certainly a good mix, with differing approaches to regulation 
 
-- Then came the **data collection**, using multi-source aggregation from sources such as NewsAPI and Google News. This got us a pretty decent set of articles for each of the markets ove the last few days.
+- Then came the **data collection**, using multi-source aggregation from sources such as NewsAPI and Google News. This got us a pretty decent set of articles for each of the markets over the last few days.
 
-- Then the **LLM** bit. I got an OpenAI API key and prompted GPT to go through each article and give me their relevance scores, categorise them based on type of regulation, and identify key regulators invoved. I also asked for brief summaries. 
+- Then the **LLM** bit. I got an OpenAI API key and prompted GPT to go through each article and give me their relevance scores, categorise them based on the  type of regulation, and identify key regulators involved. I also asked for brief summaries. 
 
-- Finally, **visualisation** was done with one eye on storytelling. I have a range of 5 visualisations,showing different aspects of the analysis. I worked on them meticulously to make sure they are visually aesthetic, thematically conistent, and highly informative. 
+- Finally, **visualisation** was done with one eye on storytelling. I have a range of 5 visualisations, showing different aspects of the analysis. I worked on them meticulously to make sure they are visually aesthetic, thematically consistent, and highly informative. 
 ---
 
 ## 📸 Dashboard Preview
@@ -61,7 +61,7 @@ This system automatically:
 - Automated deduplication and quality filtering
 
 ### GPT-Powered Analysis
-- Custom prompt engineering for institutional investor perspective
+- Custom prompt engineering for the institutional investor perspective
 - Structured outputs: relevance scores (0-10), impact levels, categories
 - Identification of key regulators and policy implications
 
@@ -239,7 +239,7 @@ From current data (as of Nov 2025):
 Dhruv Baner
 - MSc Data Science, LSE
  [GitHub](https://github.com/Dhruv-baner)
-
+**[🚀 Live Dashboard](https://regulationnews-khvu3dtti5pz8f2gr5dw9f.streamlit.app/)** |
 
 
 
